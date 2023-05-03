@@ -1,6 +1,6 @@
 .idea
 .vscode
 node_modules
-config/default.json
+config/development.json
 config/production.json
 

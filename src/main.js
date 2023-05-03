@@ -7,7 +7,6 @@ import config from 'config';
 import { ogg } from './ogg.js';
 import { openai } from './openai.js';
 
-console.log(config.get('TEST'));
 const bot = new Telegraf(config.get('TELEGRAM_BOT_TOKEN'));
 const INITIAL_SESSION = {
   messages: [],

@@ -13,12 +13,8 @@ RUN npm ci
 # Copy the source code to the working directory
 COPY . .
 
-# Set environment variables for Telegram Bot API token and ChatGPT API endpoint
-ENV TELEGRAM_BOT_TOKEN=<insert_token_here>
-ENV CHATGPT_API_ENDPOINT=<insert_endpoint_here>
-
 # Expose port 3000 for the app to listen on
 EXPOSE 3000
 
 # Run the app with npm start command
-CMD [ "npm", "start" ]
+CMD [ "npm", "start:prod" ]
