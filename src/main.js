@@ -58,7 +58,7 @@ bot.on(message('text'), async (ctx) => {
   ctx.session = ctx.session ? ctx.session : INITIAL_SESSION;
 
   try {
-    await ctx.reply(code('😤 Чому так довго? Нарешті дочекався...'));
+    await ctx.reply(code('😤 Нарешті дочекався...'));
     ctx.session.messages.push({
       role: openai.roles.USER,
       content: ctx.message.text,
