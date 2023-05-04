@@ -16,5 +16,9 @@ COPY . .
 # Expose port 3000 for the app to listen on
 EXPOSE 3000
 
+# Set the environment variables
+ENV OPEN_AI_API_KEY=${OPEN_AI_API_KEY}
+ENV TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+
 # Run the app with npm start command
 CMD ["npm", "start"]
