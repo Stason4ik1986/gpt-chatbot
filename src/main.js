@@ -3,7 +3,7 @@ import { code } from 'telegraf/format';
 import { message } from 'telegraf/filters';
 
 import * as dotenv from 'dotenv';
-dotenv.config()
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` }))
 
 import { ogg } from './ogg.js';
 import { openai } from './openai.js';
