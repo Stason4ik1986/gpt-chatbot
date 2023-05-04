@@ -5,9 +5,8 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { createWriteStream } from 'fs';
 
-import { removeFile } from './utlis.js';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { removeFile } from './utils.js';
+import { __dirname } from '../config/config.js';
 
 class OggConverter {
   constructor() {

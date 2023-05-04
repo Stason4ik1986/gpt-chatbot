@@ -2,12 +2,12 @@ import { Telegraf, session } from 'telegraf';
 import { code } from 'telegraf/format';
 import { message } from 'telegraf/filters';
 
-import config from '../config/config.js';
+import { CONFIG } from '../config/config.js';
 
 import { ogg } from './ogg.js';
 import { openai } from './openai.js';
 
-const bot = new Telegraf(config.TELEGRAM_BOT_TOKEN);
+const bot = new Telegraf(CONFIG.TELEGRAM_BOT_TOKEN);
 const INITIAL_SESSION = {
   messages: [],
 };
@@ -42,7 +42,7 @@ bot.on(message('voice'), async (ctx) => {
       content: text,
     });
     await ctx.reply(code(`👨🏽‍💻 Виконую пошук за твоїм запитом - ${text}`));
-    
+
     const response = await openai.chat(ctx.session.messages);
     ctx.session.messages.push({
       role: openai.roles.ASSISTANT,
