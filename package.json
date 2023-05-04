@@ -5,8 +5,8 @@
   "main": "src/main.js",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon ./src/main.js",
-    "build": "cross-env NODE_ENV=production node ./src/main.js"
+    "start": "NODE_ENV=development nodemon ./src/main.js",
+    "build": "NODE_ENV=production node ./src/main.js"
   },
   "keywords": [],
   "author": "",
