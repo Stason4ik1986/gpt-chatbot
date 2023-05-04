@@ -5,14 +5,15 @@
   "main": "src/main.js",
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon ./src/main.js",
-    "start": "NODE_ENV=production node ./src/main.js"
+    "dev": "cross-env NODE_ENV=development nodemon ./src/main.js",
+    "build": "cross-env NODE_ENV=production node ./src/main.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "cross-env": "^7.0.3"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",

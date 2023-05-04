@@ -2,7 +2,7 @@
 FROM node:16-alpine
 
 # Set the working directory to /app
-WORKDIR /app
+WORKDIR /app/src
 
 # Copy the package.json and package-lock.json files to the working directory
 COPY package*.json ./
@@ -22,5 +22,9 @@ ENV NODE_ENV=$NODE_ENV
 ENV OPEN_AI_API_KEY=$OPEN_AI_API_KEY
 ENV TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN
 
+# Copy the environment variable files to the container
+COPY .env.development .env.production ./
+
+RUN npm run build
 # Run the app with npm start command
-CMD ["npm", "start"]
+CMD [ "node", "src/main.js" ]

@@ -1,5 +1,6 @@
 import { createReadStream } from 'fs';
 import { Configuration, OpenAIApi } from 'openai';
+import config from '../config/config.js';
 
 class OpenAI {
   roles = {
@@ -9,7 +10,7 @@ class OpenAI {
   };
   constructor() {
     const configuration = new Configuration({
-      apiKey: process.env.OPEN_AI_API_KEY,
+      apiKey: config.OPEN_AI_API_KEY,
     });
 
     this.openai = new OpenAIApi(configuration);
