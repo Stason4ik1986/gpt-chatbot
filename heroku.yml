@@ -1,8 +1,0 @@
-build:
-  docker:
-    web: Dockerfile
-    args:
-      NODE_ENV: production
-config:
-  OPEN_AI_API_KEY: ${OPEN_AI_API_KEY}
-  TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
