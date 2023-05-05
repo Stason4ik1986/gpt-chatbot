@@ -7,6 +7,15 @@ import { CONFIG } from '../config/config.js';
 import { ogg } from './ogg.js';
 import { openai } from './openai.js';
 
+
+const app = express();
+app.use(express.json())
+app.use(
+  express.urlencoded({
+    extended: true
+  })
+)
+
 const bot = new Telegraf(CONFIG.TELEGRAM_BOT_TOKEN);
 const INITIAL_SESSION = {
   messages: [],
@@ -81,3 +90,8 @@ bot.launch();
 
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
+
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
