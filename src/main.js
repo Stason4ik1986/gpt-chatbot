@@ -51,6 +51,7 @@ bot.on(message('voice'), async (ctx) => {
     await ctx.reply(response.content);
   } catch (error) {
     console.log('Error while voice message', error.message);
+    await ctx.reply(error.message);
   }
 });
 
@@ -73,6 +74,7 @@ bot.on(message('text'), async (ctx) => {
     await ctx.reply(response.content);
   } catch (error) {
     console.log('Error while text message', error.message);
+    await ctx.reply(error.message);
   }
 });
 
