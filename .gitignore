@@ -4,4 +4,6 @@
 .github
 node_modules
 config/config.js
+npm-debug.log
+.DS_Store
 
