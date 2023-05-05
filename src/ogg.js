@@ -1,7 +1,6 @@
 import axios from 'axios';
 import ffmpeg from 'fluent-ffmpeg';
 import installer from '@ffmpeg-installer/ffmpeg';
-import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { createWriteStream } from 'fs';
 
@@ -34,6 +33,7 @@ class OggConverter {
 
   async create(url, filename) {
     try {
+      console.log(__dirname);
       const oggPath = resolve(__dirname, '../voices', `${filename}.ogg`);
       const response = await axios({
         method: 'get',
