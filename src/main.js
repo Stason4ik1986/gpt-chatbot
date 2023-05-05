@@ -36,7 +36,6 @@ bot.on(message('voice'), async (ctx) => {
     const oggPath = await ogg.create(link.href, userId);
     const mp3Path = await ogg.convertOggToMp3(oggPath, userId);
     const text = await openai.transcription(mp3Path);
-
     ctx.session.messages.push({
       role: openai.roles.USER,
       content: text,
