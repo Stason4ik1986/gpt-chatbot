@@ -9,7 +9,6 @@ class OpenAI {
     ASSISTANT: 'assistant',
   };
   constructor() {
-    console.log(CONFIG);
     const configuration = new Configuration({
       apiKey: CONFIG.OPEN_AI_API_KEY,
     });
