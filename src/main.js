@@ -17,20 +17,20 @@ bot.use(session());
 bot.command('new', async (ctx) => {
   ctx.session = INITIAL_SESSION;
 
-  await ctx.reply('🫠 Чекаю на ваше голосове або текстове повідомлення...');
+  await ctx.reply('🫠 Waiting for your voice or text message...');
 });
 
 bot.command('start', async (ctx) => {
   ctx.session = INITIAL_SESSION;
 
-  await ctx.reply('🫠 Чекаю на твоє голосове або текстове повідомлення...');
+  await ctx.reply('🫠 Waiting for your voice or text message...');
 });
 
 bot.on(message('voice'), async (ctx) => {
   ctx.session = ctx.session ? ctx.session : INITIAL_SESSION;
 
   try {
-    await ctx.reply(code('😤 Чому так довго? Нарешті дочекався...'));
+    await ctx.reply(code('😤 Request processing...'));
     const link = await ctx.telegram.getFileLink(ctx.message.voice.file_id);
     const userId = await ctx.message.from.id;
     const oggPath = await ogg.create(link.href, userId);
@@ -41,7 +41,7 @@ bot.on(message('voice'), async (ctx) => {
       role: openai.roles.USER,
       content: text,
     });
-    await ctx.reply(code(`👨🏽‍💻 Виконую пошук за твоїм запитом - ${text}`));
+    await ctx.reply(code(`👨🏽‍💻 Searching for your request 👨🏽‍💻... ${text}`));
 
     const response = await openai.chat(ctx.session.messages);
     ctx.session.messages.push({
@@ -59,7 +59,7 @@ bot.on(message('text'), async (ctx) => {
   ctx.session = ctx.session ? ctx.session : INITIAL_SESSION;
 
   try {
-    await ctx.reply(code('😤 Нарешті дочекався...'));
+    await ctx.reply(code('😤 Request processing...'));
     ctx.session.messages.push({
       role: openai.roles.USER,
       content: ctx.message.text,
