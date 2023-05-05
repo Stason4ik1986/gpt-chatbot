@@ -9,7 +9,7 @@ class OpenAI {
     ASSISTANT: 'assistant',
   };
   constructor() {
-    console.log(CONFIG.OPEN_AI_API_KEY);
+    console.log(CONFIG);
     const configuration = new Configuration({
       apiKey: CONFIG.OPEN_AI_API_KEY,
     });
@@ -23,7 +23,6 @@ class OpenAI {
         model: 'gpt-3.5-turbo',
         messages,
       });
-      console.log(messages);
       return response.data.choices[0].message;
     } catch (error) {
       console.log('Error while gpt chat', error.message);
