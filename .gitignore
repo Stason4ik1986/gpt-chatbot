@@ -3,7 +3,8 @@
 .idea
 .vscode
 .github
+.DS_Store
+google-youtube.json
 node_modules
 npm-debug.log
-.DS_Store
 

@@ -1,21 +1,21 @@
 import { Telegraf, session } from 'telegraf';
 import { code } from 'telegraf/format';
 import { message } from 'telegraf/filters';
-import express from 'express'
+import express from 'express';
 
 import { CONFIG } from '../config/config.js';
 
 import { ogg } from './ogg.js';
 import { openai } from './openai.js';
-
+import { textConverter } from './text.js';
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
 app.use(
   express.urlencoded({
-    extended: true
+    extended: true,
   })
-)
+);
 
 const bot = new Telegraf(CONFIG.TELEGRAM_BOT_TOKEN);
 const INITIAL_SESSION = {
@@ -57,7 +57,13 @@ bot.on(message('voice'), async (ctx) => {
       role: openai.roles.ASSISTANT,
       content: response.content,
     });
+
+    // Text response
     await ctx.reply(response.content);
+
+    // Audio response
+    // const source = await textConverter.textToSpeech(response.content);
+    // await ctx.sendAudio({ source }, { title: 'The answer from assistant', performer: 'ChatGPT' });
   } catch (error) {
     console.log('Error while voice message', error.message);
     await ctx.reply(error.message);
@@ -80,7 +86,13 @@ bot.on(message('text'), async (ctx) => {
       role: openai.roles.ASSISTANT,
       content: response.content,
     });
+
+    // Text response
     await ctx.reply(response.content);
+
+    // Audio response
+    // const source = await textConverter.textToSpeech(response.content);
+    // await ctx.sendAudio({ source }, { title: 'The answer from assistant', performer: 'ChatGPT' });
   } catch (error) {
     console.log('Error while text message', error.message);
     await ctx.reply(error.message);
@@ -92,7 +104,7 @@ bot.launch();
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+  console.log(`Server running on port ${PORT}`);
+});
